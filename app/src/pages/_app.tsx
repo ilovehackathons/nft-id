@@ -11,7 +11,7 @@ import { SessionProvider } from "next-auth/react";
 require("@solana/wallet-adapter-react-ui/styles.css");
 require("../styles/globals.css");
 
-const App: FC<AppProps> = ({
+const App: FC<AppProps<{ session: any }>> = ({
   Component,
   pageProps: { session, ...pageProps },
 }) => {
