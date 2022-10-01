@@ -13,6 +13,11 @@ export const authOptions = {
       clientId: process.env.TWITTER_CLIENT_ID,
       clientSecret: process.env.TWITTER_CLIENT_SECRET,
       version: "2.0", // opt-in to Twitter OAuth 2.0
+      // authorization: {
+      //   params: {
+      //     redirect_uri: "https://nft-id.vercel.app/api/auth/callback/github",
+      //   },
+      // },
     }),
   ],
   secret: process.env.SECRET, // https://github.com/nextauthjs/next-auth/issues/3245#issuecomment-974772884
