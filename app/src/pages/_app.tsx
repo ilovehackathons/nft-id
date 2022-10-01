@@ -18,7 +18,7 @@ const App: FC<AppProps> = ({
   return (
     <>
       <Head>
-        <title>Solana Scaffold Lite</title>
+        <title>NFT-ID</title>
       </Head>
 
       <ContextProvider>

@@ -31,22 +31,22 @@ export const HomeView: FC = ({}) => {
     <div className="md:hero mx-auto p-4">
       <div className="md:hero-content flex flex-col">
         <h1 className="text-center text-5xl md:pl-12 font-bold text-transparent bg-clip-text bg-gradient-to-tr from-[#9945FF] to-[#14F195]">
-          Scaffold Lite{" "}
+          NFT-ID{" "}
           <span className="text-sm font-normal align-top text-slate-700">
             v{pkg.version}
           </span>
         </h1>
         <h4 className="md:w-full text-center text-slate-300 my-2">
-          <p>Simply the fastest way to get started.</p>
-          Next.js, tailwind, wallet, web3.js, and more.
+          <p>Simply the fastest way to verify your identity.</p>
+          Twitter, Discord, LinkedIn, Instagram, and more.
         </h4>
         <LoginButton />
 
-        <div className="max-w-md mx-auto mockup-code bg-primary p-6 my-2">
+        {/* <div className="max-w-md mx-auto mockup-code bg-primary p-6 my-2">
           <pre data-prefix=">">
             <code className="truncate">Start building on Solana </code>
           </pre>
-        </div>
+        </div> */}
         <div className="text-center">
           <RequestAirdrop />
           {/* {wallet.publicKey && <p>Public Key: {wallet.publicKey.toBase58()}</p>} */}
