@@ -15,5 +15,6 @@ export const authOptions = {
       version: "2.0", // opt-in to Twitter OAuth 2.0
     }),
   ],
+  secret: process.env.SECRET, // https://github.com/nextauthjs/next-auth/issues/3245#issuecomment-974772884
 };
 export default NextAuth(authOptions);
