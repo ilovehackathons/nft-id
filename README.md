@@ -4,7 +4,7 @@ Verify your identity with an NFT on Solana. First, connect your wallet (e.g. Pha
 We're live on [https://nft-id.vercel.app/](https://nft-id.vercel.app/)! 🎉
 ## Usage
 ### Frontend
-1. Run `cd app` to change to the frontend subdirectory. All commands must be run from there.
+1. Run `cd app` to change to the frontend subdirectory. The following commands must be run from there.
 2. Go to https://generate-secret.vercel.app/32 and copy the secret.
 3. Create `.env.local` (in `app`!) with the following contents:
 ```
