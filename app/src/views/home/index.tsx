@@ -41,6 +41,7 @@ export const HomeView: FC = ({}) => {
           Next.js, tailwind, wallet, web3.js, and more.
         </h4>
         <LoginButton />
+        <LoginButton />
 
         <div className="max-w-md mx-auto mockup-code bg-primary p-6 my-2">
           <pre data-prefix=">">
