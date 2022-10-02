@@ -1,0 +1,17 @@
+{
+    "name": "NFT.Storage Example #0",
+    "symbol": "NFTDOT",
+    "description": "A text description of this NFT",
+    "image": "https://github.com/ilovehackathons/nft-id/blob/masa/app/public/twitter.png",
+    "attributes": [
+        {"trait_type": "edification", "value": "100"}
+    ],
+    "properties": {
+        "creators": [
+          {"address": "EUcNnc5MkEQdz7QctmnBsXtswWHnpPX4J7LTdAUqTR17", "share": 100}
+        ],
+        "files": [
+          {"uri": "https://github.com/ilovehackathons/nft-id/blob/masa/app/public/twitter.png", "type": "image/png"}
+        ]
+    }
+}
