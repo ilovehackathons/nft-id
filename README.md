@@ -47,7 +47,7 @@ P.S. You can deploy the app to Vercel for free by following the instructions [he
 12. `node printPrivKey.js`
 13. Import the private key in Phantom and switch to Devnet. The NFT should be there.
 
-### Credits
+## Credits
 
 - [create-solana-app](https://github.com/solana-developers/create-solana-app)
 - [NextAuth.js](https://github.com/nextauthjs/next-auth)
