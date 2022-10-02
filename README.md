@@ -42,7 +42,7 @@ P.S. You can deploy the app to Vercel for free by following the instructions [he
 7. `anchor build`
 8. `solana airdrop 2 wallet.json` (repeat at least 3 times)
 9. `anchor deploy`
-10. Replace the old program ID (`eaAguoetxqxFdB7Qb1J7nEt52hphWfLnsyi8ZXQ8iNn`) in `Anchor.toml` and `lib.rs`.
+10. Replace the old program ID (`3mAW7AVHr7TRvYkmeXKdTsDCYjdnJ2t4TpFeXPb57BRu`) in `Anchor.toml` and `lib.rs`.
 11. `anchor test`
 12. `node printPrivKey.js`
 13. Import the private key in Phantom and switch to Devnet. The NFT should be there.
