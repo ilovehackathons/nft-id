@@ -37,12 +37,12 @@ P.S. You can deploy the app to Vercel for free by following the instructions [he
 2. Install [Solana](https://docs.solana.com/cli/install-solana-cli-tools#macos--linux).
 3. Install [Anchor](https://www.anchor-lang.com/docs/installation#anchor).
 4. `cd program` to change to the program subdirectory. All the following commands must be run from there!
-5. `npm ci` to install the exact versions of the dependencies.
-6. `node printPrivKey.js`
-7. Import the private key in Phantom and switch to Devnet.
-8. `anchor build`
-9. `solana airdrop 2 wallet.json` (a couple of times)
-10. `anchor deploy`
-11. Replace the old program ID (`eaAguoetxqxFdB7Qb1J7nEt52hphWfLnsyi8ZXQ8iNn`) in `Anchor.toml` and `lib.rs`.
-12. `anchor test --skip-deploy` (try without `--skip-deploy` if it fails)
-13. If the last command was successful, the NFT should be visible in Phantom.
+5. `npm ci && npm ci -D` to install the exact versions of the dependencies.
+6. `solana-keygen new --force --outfile wallet.json --no-bip39-passphrase`
+7. `anchor build`
+8. `solana airdrop 2 wallet.json` (repeat at least 3 times)
+9. `anchor deploy`
+10. Replace the old program ID (`eaAguoetxqxFdB7Qb1J7nEt52hphWfLnsyi8ZXQ8iNn`) in `Anchor.toml` and `lib.rs`.
+11. `anchor test`
+12. `node printPrivKey.js`
+13. Import the private key in Phantom and switch to Devnet. The NFT should be there.
