@@ -53,7 +53,7 @@ pub mod nft_id {
             },
         ];
         msg!("Creator Assigned");
-        let symbol = std::string::ToString::to_string("symb");
+        let symbol = std::string::ToString::to_string("NID");
         invoke(
             &create_metadata_accounts_v2(
                 ctx.accounts.token_metadata_program.key(),
