@@ -1,9 +1,7 @@
 import { RequestAirdrop } from 'components/RequestAirdrop';
 import { fetchUser } from './api/auth/twitter-user'
 var imageName = require('../../public/twitter.png');
-const withVideos = require('next-videos');
-
-<video controls><source src={videoUrl} type='video/mp4' /></video>
+// import withVideos from 'next-videos';
 function TwitterCard(props) {
   let profileImageURL = props.twitterInfo.profileImageURL.replace(/_normal/g, "");
   
@@ -38,9 +36,9 @@ export default function Twitter(props) {
       <div className="mx-auto">
         <img className="rounded-full h-24 w-24" src={imageName} />
       </div>
-      <div>
-    <video src={require('../../public/twitter.mp4')} />
-  </div>
+      {/* <div>
+        <video src={require('../../public/twitter.mp4')} />
+      </div> */}
 
     </div>
   )
