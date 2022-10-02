@@ -6,18 +6,6 @@ use mpl_token_metadata::instruction::{create_master_edition_v3, create_metadata_
 
 declare_id!("eaAguoetxqxFdB7Qb1J7nEt52hphWfLnsyi8ZXQ8iNn");
 
-// #[program]
-// pub mod nft_id {
-//     use super::*;
-
-//     pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
-//         Ok(())
-//     }
-// }
-
-// #[derive(Accounts)]
-// pub struct Initialize {}
-
 #[program]
 pub mod nft_id {
     use super::*;

@@ -1,17 +1,13 @@
 [features]
 seeds = false
-#[programs.localnet]
 [programs.devnet]
-#nft_id = "eaAguoetxqxFdB7Qb1J7nEt52hphWfLnsyi8ZXQ8iNn"
 nft_id = "eaAguoetxqxFdB7Qb1J7nEt52hphWfLnsyi8ZXQ8iNn"
 
 [registry]
 url = "https://anchor.projectserum.com"
 
 [provider]
-#cluster = "localnet"
 cluster = "devnet"
-#wallet = "/Users/i/.config/solana/id.json"
 wallet = "./wallet.json"
 
 [scripts]
