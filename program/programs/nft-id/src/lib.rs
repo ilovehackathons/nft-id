@@ -4,7 +4,7 @@ use anchor_spl::token;
 use anchor_spl::token::{MintTo, Token};
 use mpl_token_metadata::instruction::{create_master_edition_v3, create_metadata_accounts_v2};
 
-declare_id!("3mAW7AVHr7TRvYkmeXKdTsDCYjdnJ2t4TpFeXPb57BRu");
+declare_id!("HeimBix2zZfL5WHMNJBwGzVbaB7bxWnHLE6fvXFKBdhN");
 
 #[program]
 pub mod nft_id {
