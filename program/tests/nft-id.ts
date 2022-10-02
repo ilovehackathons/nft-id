@@ -122,7 +122,7 @@ describe("metaplex-anchor-nft", () => {
     const tx = await program.methods
       .mintNft(
         mintKey.publicKey,
-        "ipfs://bafkreiaakba5ypggbnoeufnuhffdlpihosoqbpde4qnulwz2gvdc47i6qm",
+        "https://raw.githubusercontent.com/ilovehackathons/nft-id/masa/app/public/twitter.png",
         "Twitter Profile"
       )
       .accounts({
