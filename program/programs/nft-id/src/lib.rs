@@ -4,7 +4,7 @@ use anchor_spl::token;
 use anchor_spl::token::{MintTo, Token};
 use mpl_token_metadata::instruction::{create_master_edition_v3, create_metadata_accounts_v2};
 
-declare_id!("6hphtVVtaUbeK9jBbR7QxXccUC5LgYgarMv19qicHjJy");
+declare_id!("eaAguoetxqxFdB7Qb1J7nEt52hphWfLnsyi8ZXQ8iNn");
 
 // #[program]
 // pub mod nft_id {
@@ -19,7 +19,7 @@ declare_id!("6hphtVVtaUbeK9jBbR7QxXccUC5LgYgarMv19qicHjJy");
 // pub struct Initialize {}
 
 #[program]
-pub mod metaplex_anchor_nft {
+pub mod nft_id {
     use super::*;
 
     pub fn mint_nft(

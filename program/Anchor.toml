@@ -2,8 +2,8 @@
 seeds = false
 #[programs.localnet]
 [programs.devnet]
-#nft_id = "6hphtVVtaUbeK9jBbR7QxXccUC5LgYgarMv19qicHjJy"
-metaplex_anchor_nft = "6hphtVVtaUbeK9jBbR7QxXccUC5LgYgarMv19qicHjJy"
+#nft_id = "eaAguoetxqxFdB7Qb1J7nEt52hphWfLnsyi8ZXQ8iNn"
+nft_id = "eaAguoetxqxFdB7Qb1J7nEt52hphWfLnsyi8ZXQ8iNn"
 
 [registry]
 url = "https://anchor.projectserum.com"

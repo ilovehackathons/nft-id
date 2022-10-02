@@ -17,7 +17,7 @@
 
 import * as anchor from "@project-serum/anchor";
 import { Program, Wallet } from "@project-serum/anchor";
-import { MetaplexAnchorNft } from "../target/types/metaplex_anchor_nft";
+import { NftId } from "../target/types/nft_id";
 import {
   TOKEN_PROGRAM_ID,
   createAssociatedTokenAccountInstruction,
@@ -32,8 +32,7 @@ describe("metaplex-anchor-nft", () => {
   const provider = anchor.AnchorProvider.env();
   const wallet = provider.wallet as Wallet;
   anchor.setProvider(provider);
-  const program = anchor.workspace
-    .MetaplexAnchorNft as Program<MetaplexAnchorNft>;
+  const program = anchor.workspace.NftId as Program<NftId>;
 
   it("Is initialized!", async () => {
     // Add your test here.
