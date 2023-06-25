@@ -1,7 +1,7 @@
 // Next, React
 import { FC, useEffect, useState } from "react";
 import Link from "next/link";
-import LoginButton from "../../components/LoginButton";
+import NftIdGenerator from "../../components/NftIdGenerator";
 
 // Wallet
 import { useWallet, useConnection } from "@solana/wallet-adapter-react";
@@ -40,7 +40,7 @@ export const HomeView: FC = ({}) => {
           <p>Bring your web2 reputation onto chain.</p>
           Connect GitHub or Twitter and mint your profile as an NFT on Solana (powered by <a href="https://underdogprotocol.com" className="text-blue-300 hover:text-blue-200">Underdog</a>).
         </p>
-        <LoginButton />
+        <NftIdGenerator />
 
         {/* <div className="max-w-md mx-auto mockup-code bg-primary p-6 my-2">
           <pre data-prefix=">">
