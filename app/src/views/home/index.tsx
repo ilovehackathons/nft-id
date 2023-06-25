@@ -36,10 +36,10 @@ export const HomeView: FC = ({}) => {
             v{pkg.version}
           </span>
         </h1>
-        <h4 className="md:w-full text-center text-slate-300 my-2">
-          <p>Simply the fastest way to verify your identity.</p>
-          Twitter, Discord, LinkedIn, Instagram, and more.
-        </h4>
+        <p className="md:w-full text-center text-slate-300 my-2">
+          <p>Bring your web2 reputation onto chain.</p>
+          Connect GitHub or Twitter and mint your profile as an NFT on Solana (powered by <a href="https://underdogprotocol.com" className="text-blue-300 hover:text-blue-200">Underdog</a>).
+        </p>
         <LoginButton />
 
         {/* <div className="max-w-md mx-auto mockup-code bg-primary p-6 my-2">
