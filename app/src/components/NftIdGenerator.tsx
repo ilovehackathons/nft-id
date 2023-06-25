@@ -204,15 +204,14 @@ function GitHubCard({
         <div className="card-actions justify-end">
           {!(minting || errored || sucessful) ? (
             <button className="px-8 m-2 btn animate-pulse bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:from-pink-500 hover:to-yellow-500 ..." onClick={createAndMintNft}>
-              Mint
+              Prepare mint
             </button>
           ) : sucessful ? (
-              // <p>Check your wallet for the NFT.</p>
-              <p>Visit this link to claim your NFT: <a target="_blank" rel="noopener" href={claimLink} className="text-blue-300 hover:text-blue-200">Underdog</a></p>
+              <a className="px-8 m-2 btn animate-pulse bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:from-pink-500 hover:to-yellow-500 ..." target="_blank" rel="noopener" href={claimLink}>Claim NFT</a>
           ) : errored ? (
             <p>Error.</p>
           ) : <button disabled className="px-8 m-2 btn animate-pulse bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:from-pink-500 hover:to-yellow-500 ...">
-            Minting...
+                  Generating...
           </button>
           }
         </div>
