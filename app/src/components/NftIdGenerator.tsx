@@ -3,41 +3,40 @@ import { Message, MessageV0, Transaction, VersionedMessage, VersionedTransaction
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useCallback, useState } from "react";
 
-// No minting implemented for Twitter.
-function TwitterCard({
-  description,
-  // profile_image_url,
-  name,
-  username,
-  location,
-  id,
-  verified,
-  url,
-  public_metrics,
-  // protected
-  created_at,
-  ...props
-}) {
-  const profile_image_url = props.profile_image_url?.replace(/_normal/g, "");
+// function TwitterCard({
+//   description,
+//   // profile_image_url,
+//   name,
+//   username,
+//   location,
+//   id,
+//   verified,
+//   url,
+//   public_metrics,
+//   // protected
+//   created_at,
+//   ...props
+// }) {
+//   const profile_image_url = props.profile_image_url?.replace(/_normal/g, "");
 
-  return (
-    <div className="card card-compact w-96 bg-base-100 shadow-xl border-2 border-indigo-600">
-      <figure>
-        <img src={profile_image_url} alt="" />
-      </figure>
-      <div className="card-body">
-        <h2 className="card-title">{name}</h2>
-        <p>@{username}</p>
-        <p className="mt-3">{description}</p>
-        <div className="card-actions justify-end">
-          <button disabled className="px-8 m-2 btn animate-pulse bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:from-pink-500 hover:to-yellow-500 ...">
-            Twitter not supported yet
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
+//   return (
+//     <div className="card card-compact w-96 bg-base-100 shadow-xl border-2 border-indigo-600">
+//       <figure>
+//         <img src={profile_image_url} alt="" />
+//       </figure>
+//       <div className="card-body">
+//         <h2 className="card-title">{name}</h2>
+//         <p>@{username}</p>
+//         <p className="mt-3">{description}</p>
+//         <div className="card-actions justify-end">
+//           <button disabled className="px-8 m-2 btn animate-pulse bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:from-pink-500 hover:to-yellow-500 ...">
+//             Twitter not supported yet
+//           </button>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
 
 function GitHubCard({
   user: {
@@ -45,7 +44,8 @@ function GitHubCard({
     image
   },
   setUnderdogCreateResponse,
-  setUnderdogClaimResponse
+  setUnderdogClaimResponse,
+  prefix
 }) {
   const { connection } = useConnection();
   const { publicKey, sendTransaction } = useWallet();
@@ -134,7 +134,10 @@ function GitHubCard({
         authorization: `Bearer ${process.env.NEXT_PUBLIC_UNDERDOG_API_KEY}`,
       },
       body: JSON.stringify({
-        attributes: { profileUrl: 'https://github.com/ilovehackathons' },
+        attributes: {
+          profileUrl:
+            `${prefix ?? 'https://github.com/'}ilovehackathons`
+        },
         upsert: false,
         name,
         image,
@@ -231,8 +234,9 @@ export default function NftIdGenerator() {
         Signed in as {session.user.image.username ?? session.user.name}
         <br />
         <button onClick={() => signOut()}>Sign out</button>
-        {session.user.image.username && <TwitterCard {...session.user.image} />}
+        {/* {session.user.image.username && <TwitterCard {...session.user.image} />} */}
         {session.user.name && <GitHubCard {...session} setUnderdogCreateResponse={setUnderdogCreateResponse} setUnderdogClaimResponse={setUnderdogClaimResponse} />}
+        {session.user.image.username && <GitHubCard prefix="https://twitter.com/" user={{ name: session.user.image.username, image: session.user.image.profile_image_url }} setUnderdogCreateResponse={setUnderdogCreateResponse} setUnderdogClaimResponse={setUnderdogClaimResponse} />}
         <h1 className="text-3xl">Profile data</h1>
         <pre>{JSON.stringify(session, null, 2)}</pre>
         <h1 className="text-3xl">NFT creation response</h1>
