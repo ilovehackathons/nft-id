@@ -2,6 +2,12 @@
 
 Verify your identity with an NFT on Solana. First, connect your wallet (e.g. Phantom). Then, connect a social account (GitHub and Twitter are already supported). Finally, mint your soulbound NFT-ID. You're now verified! ✅
 
+## Solana Weekend Hacks intro
+
+The project was originally started during the RustFi hackathon at Factory Berlin in October 2022, but the actual NFT minting was never implemented. Now, thanks to [Underdog](https://underdogprotocol.com), I'm adding this missing functionality.
+
+I'm commiting new code directly to `main`. The original code will be in the `rustfi` branch.
+
 ## Demo
 
 We're live on [https://nft-id.vercel.app/](https://nft-id.vercel.app/)! 🎉
@@ -20,7 +26,8 @@ GITHUB_SECRET=XXXXXXXXXX
 TWITTER_CLIENT_ID=XXXXXXXXXX
 TWITTER_CLIENT_SECRET=XXXXXXXXXX
 SECRET=XXXXXXXXXX
-NEXTAUTH_URL=http://localhost:3000 # Change the URL on production!
+NEXT_PUBLIC_UNDERDOG_API_KEY=XXXXXXXXXX # Remove later. This shouldn't actually be in the frontend.
+#UNDERDOG_API_KEY=XXXXXXXXXX # This will be used once the API calls are moved to the backend where they belongs.
 ```
 
 (Replace each `XXXXXXXXXX` with a valid value.)
