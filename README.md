@@ -1,12 +1,36 @@
 # NFT-ID
 
-Verify your identity with an NFT on Solana. First, connect your wallet (e.g. Phantom). Then, connect a social account (GitHub and Twitter are already supported). Finally, mint your soulbound NFT-ID. You're now verified! ✅
+Bring your off-chain reputation onto chain. Link your web2 identify to your wallet address by connecting a social media account (e.g. GitHub) and minting an NFT that verifies you as the owner of that account.
 
-## Solana Weekend Hacks intro
+## Solana Weekend Hacks
 
 The project was originally started during the RustFi hackathon at Factory Berlin in October 2022, but the actual NFT minting was never implemented. Now, thanks to [Underdog](https://underdogprotocol.com), I'm adding this missing functionality.
 
 I'm commiting new code directly to `main`. The original code will be in the `rustfi` branch.
+
+### How to use
+
+1. Connect your wallet (e.g. Phantom).
+2. Connect a social media account (currently, only GitHub works).
+3. Click *Prepare mint* to generate the NFT.
+4. Click *Claim NFT* to put it in your wallet.
+
+### If I had more time
+
+Here are some TODOs/open questions:
+
+- Move API key to the backend
+- Can non-transferable NFTs be compressed?
+- How to send the transaction that the 'Create an NFT' endpoint returns?
+- Clean up the code
+- Clean up the UI
+- Implement Twitter
+- Let the user choose what data to include in the NFT
+- Make the NFT image a combination of the NFT-ID logo, the user's profile picture (if any) and the provider logo (e.g. GitHub)
+- Get more data from GitHub
+- Can a non-transferable NFT be added to a collection?
+- Identify the NFT issuer (detect fakes)
+- Does it need to be non-transferable at all (detect transfers)?
 
 ## Demo
 
