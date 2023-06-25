@@ -1,6 +1,5 @@
-import { WalletNotConnectedError } from "@solana/wallet-adapter-base";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
-import { Keypair, SystemProgram, Transaction, sendAndConfirmRawTransaction } from "@solana/web3.js";
+import { Message, MessageV0, Transaction, VersionedMessage, VersionedTransaction } from "@solana/web3.js";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useCallback, useState } from "react";
 
@@ -51,36 +50,80 @@ function GitHubCard({
   const { connection } = useConnection();
   const { publicKey, sendTransaction } = useWallet();
 
-  const actuallyMintNonTransferableNft = useCallback(async (transactionUnderdogGaveMe: string) => {
-    // Error: failed to send transaction: encoded solana_sdk::transaction::versioned::VersionedTransaction too large: 1732 bytes (max: encoded/raw 1644/1232)
-    sendAndConfirmRawTransaction(connection, Buffer.from(transactionUnderdogGaveMe));
-  }, [publicKey, sendTransaction, connection]);
+  const wallet = useWallet();
 
+  async function generateClaimLink(nftId: number) {
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        authorization: `Bearer ${process.env.NEXT_PUBLIC_UNDERDOG_API_KEY}`,
+      }
+    };
 
-  // This is just example code from https://github.com/solana-labs/wallet-adapter/blob/master/APP.md
-  const sendZeroSol = useCallback(async () => {
-    if (!publicKey) throw new WalletNotConnectedError();
+    fetch(`https://dev.underdogprotocol.com/v2/projects/n/1/nfts/${nftId}/claim`, options)
+      .then(response => response.json())
+      .then(response => {
+        console.log(response); setClaimLink(response.link)
+        setMinting(false)
+        setErrored(false)
+        setSuccessful(true)
 
-    // 890880 lamports as of 2022-09-01
-    const lamports = await connection.getMinimumBalanceForRentExemption(0);
-
-    const transaction = new Transaction().add(
-      SystemProgram.transfer({
-        fromPubkey: publicKey,
-        toPubkey: Keypair.generate().publicKey,
-        lamports: 0,
       })
-    );
+      .catch(err => {
+        console.error(err);
+        setMinting(false)
+        setErrored(true)
+        setSuccessful(false)
+      });
+  }
 
-    const {
-      context: { slot: minContextSlot },
-      value: { blockhash, lastValidBlockHeight }
-    } = await connection.getLatestBlockhashAndContext();
+  // Doesn't work
+  // const actuallyMintNonTransferableNft = useCallback(async (transactionUnderdogGaveMe: string) => {
+  //   try {
+  //     const buffer = Buffer.from(transactionUnderdogGaveMe)
+  //     const u8arr = Uint8Array.from(buffer)
 
-    const signature = await sendTransaction(transaction, connection, { minContextSlot });
+  //     // const msgv0 = MessageV0.deserialize(u8arr) // Error: Expected versioned message but received legacy message
+  //     const msg = Message.from(u8arr)
+  //     console.log('msg:', msg)
 
-    await connection.confirmTransaction({ blockhash, lastValidBlockHeight, signature });
-  }, [publicKey, sendTransaction, connection]);
+  //     // const tx = Transaction.from()
+  //     // await wallet.sendTransaction(tx, connection)
+
+  //     // await wallet.sendTransaction()
+
+  //     // const base64Tx = Buffer.from(transactionUnderdogGaveMe)
+
+  //     // const message = VersionedMessage.deserialize(base64Tx)
+
+
+
+  //     // console.log(message.header)
+
+  //     // const tx = new VersionedTransaction(message)
+  //     // console.log(tx.signatures)
+
+
+  //     // // const signedTx = await wallet.signTransaction(tx)
+
+  //     // const result = await wallet.sendTransaction(tx, connection)
+  //     // // const sig = await connection.sendEncodedTransaction(signedTx.toString())
+  //     // // console.log(sig)
+  //     // // const result = await wallet.sendTransaction(VersionedTransaction.deserialize(bufferRes), connection);
+
+  //     // // console.log("sendTransaction successful!", result);
+  //     setErrored(false)
+  //     setSuccessful(true)
+  //   }
+  //   catch (e) {
+  //     console.log('signMessage/sendTransaction error:', e)
+  //     setErrored(true)
+  //     setSuccessful(false)
+  //   }
+  //   setMinting(false)
+
+  // }, [publicKey, sendTransaction, connection]);
 
   async function createAndMintNft() {
     const options = {
@@ -108,7 +151,8 @@ function GitHubCard({
       .then(response => {
         setUnderdogCreateResponse(response)
         console.log('The NFT was created and is waiting to be claimed:', response)
-        claimAndMintNft(response.mintAddress)
+        // claimAndMintNft(response.mintAddress)
+        generateClaimLink(response.id)
       })
       .catch(err => {
         console.log('Underdog error:', err)
@@ -118,36 +162,36 @@ function GitHubCard({
       });
   }
 
-  async function claimAndMintNft(mintAddress: string) {
-    const options = {
-      method: 'POST',
-      headers: {
-        accept: 'application/json',
-        'content-type': 'application/json',
-        authorization: 'Bearer e92661ae7cd4d3.645b0a2f83c8493b9ce760bdffc1e2d0'
-      },
-      body: JSON.stringify({ claimerAddress: publicKey })
-    };
+  // async function claimAndMintNft(mintAddress: string) {
+  //   const options = {
+  //     method: 'POST',
+  //     headers: {
+  //       accept: 'application/json',
+  //       'content-type': 'application/json',
+  //       authorization: 'Bearer e92661ae7cd4d3.645b0a2f83c8493b9ce760bdffc1e2d0'
+  //     },
+  //     body: JSON.stringify({ claimerAddress: publicKey })
+  //   };
 
-    fetch(`https://dev.underdogprotocol.com/v2/nfts/${mintAddress}/claim`, options)
-      .then(response => response.json())
-      .then(response => {
-        setUnderdogClaimResponse(response)
-        console.log("Here's the transaction to claim the NFT:", response)
-        actuallyMintNonTransferableNft(response.transaction)
-        // sendZeroSol() // Just for testing.
-      })
-      .catch(err => {
-        console.log('Underdog error:', err)
-        setMinting(false)
-        setErrored(true)
-        setSuccessful(false)
-      });
-  }
+  //   fetch(`https://dev.underdogprotocol.com/v2/nfts/${mintAddress}/claim`, options)
+  //     .then(response => response.json())
+  //     .then(response => {
+  //       setUnderdogClaimResponse(response)
+  //       console.log("Here's the transaction to claim the NFT:", response)
+  //       actuallyMintNonTransferableNft(response.transaction)
+  //     })
+  //     .catch(err => {
+  //       console.log('Underdog error:', err)
+  //       setMinting(false)
+  //       setErrored(true)
+  //       setSuccessful(false)
+  //     });
+  // }
 
   const [minting, setMinting] = useState(false)
   const [errored, setErrored] = useState(false)
   const [sucessful, setSuccessful] = useState(false)
+  const [claimLink, setClaimLink] = useState()
 
   return (
     <div className="card card-compact w-96 bg-base-100 shadow-xl border-2 border-indigo-600">
@@ -163,7 +207,8 @@ function GitHubCard({
               Mint
             </button>
           ) : sucessful ? (
-            <p>Success!</p>
+              // <p>Check your wallet for the NFT.</p>
+              <p>Visit this link to claim your NFT: <a target="_blank" rel="noopener" href={claimLink} className="text-blue-300 hover:text-blue-200">Underdog</a></p>
           ) : errored ? (
             <p>Error.</p>
           ) : <button disabled className="px-8 m-2 btn animate-pulse bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:from-pink-500 hover:to-yellow-500 ...">
